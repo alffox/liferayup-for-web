@@ -181,10 +181,9 @@
                         if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
                             aCallback(anHttpRequest.responseText);
                     }
-
-                    anHttpRequest.open( "GET", aUrl, true );
                     anHttpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
                     anHttpRequest.setRequestHeader('Content-Type', 'text/xml');
+                    anHttpRequest.open( "GET", aUrl, true );
                     anHttpRequest.send( null );
                 }
             }
