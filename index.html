@@ -184,6 +184,7 @@
                     //anHttpRequest.setRequestHeader('Content-Type', 'text/xml');
                     anHttpRequest.open( "GET", aUrl, true );
                     anHttpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
+                    anHttpRequest.setRequestHeader("Content-Type", "text/xml");
                     anHttpRequest.send( null );
                 }
             }
