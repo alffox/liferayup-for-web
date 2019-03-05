@@ -1,4 +1,4 @@
-var model = {//Load data locally or remotely
+var model = {// Load data locally or remotely
 
     getLiferayData: function () {
         var liferayData;
@@ -14,31 +14,49 @@ var model = {//Load data locally or remotely
             }
         };
 
-        xhr.open('GET', './info.json'); // This file is the local json copy of https://files.liferay.com/public/support/patching-tool-info.xml
+        xhr.open('GET', './info.json');// This file is the local json copy of https://files.liferay.com/public/support/patching-tool-info.xml
         xhr.send();
     },
 
     getLiferayVersions: function (liferayData) {
 
-        liferayVersions = [];
+        liferayVersions = [];// Initializes empty versions array
         
-        // Find all versions equal or > 6.2
+        // Populates liferayVersions empty array with value equal or major than 6.2
         for (var i = 1; i < liferayData["service-packs"].length; i++) {
             liferayVersions.push(liferayData["service-packs"][i].version);
         }
-        console.log("array of versions is: " + liferayVersions);
+        commander.fetchLiferayVersions(liferayVersions);// Delegate the data handling for rendering to the commander
     },
 
 };
 
-var commander = {//Actual logic
+var commander = {// Actual logic
+
     initData: function () {
         model.getLiferayData();
+    },
+
+    fetchLiferayVersions: function (liferayVersions) {
+        view.renderLiferayVersions(liferayVersions);
     }
-};
-
-var view = {//Render data on the interface
 
 };
 
-commander.initData();//Ignite the app !
+var view = {// Render data on the interface
+
+    renderLiferayVersions: function (liferayVersions) {
+
+        var $liferayVersionFormSelect = document.getElementById('liferayVersionFormSelect');
+
+        for (var i = 0; i < liferayVersions.length; i++) {
+            var optionNode = document.createElement("option");
+            $liferayVersionFormSelect.appendChild(optionNode);
+            optionNode.textContent = liferayVersions[i];
+        }
+        
+    }
+
+};
+
+commander.initData();// Ignite the app !
