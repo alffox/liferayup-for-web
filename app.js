@@ -20,12 +20,13 @@ var model = {//Load data locally or remotely
 
     getLiferayVersions: function (liferayData) {
 
-        liferayVersions = liferayData["service-packs"];
-
+        liferayVersions = [];
+        
         // Find all versions equal or > 6.2
         for (var i = 1; i < liferayData["service-packs"].length; i++) {
-            console.log("fetched version: " + liferayData["service-packs"][i].version);
+            liferayVersions.push(liferayData["service-packs"][i].version);
         }
+        console.log("array of versions is: " + liferayVersions);
     },
 
 };
