@@ -204,21 +204,7 @@
         integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
         crossorigin="anonymous"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-    <script type="text/javascript">
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-            if (xhr.status >= 200 && xhr.status < 300) {
-                console.log(JSON.parse(xhr.responseText));
-            } else {
-                console.log(JSON.parse(xhr.responseText));
-            }
-
-        };
-
-        xhr.open('GET', './info.json');
-        xhr.send();
-        // url: "https://files.liferay.com/public/support/patching-tool-info.xml",
-    </script>
+    <script src="app.js"></script>
 </body>
 
 </html>
