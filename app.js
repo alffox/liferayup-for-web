@@ -8,7 +8,7 @@ var model = {// Load data locally or remotely
                 liferayData = JSON.parse(xhr.responseText);
 
                 model.getLiferayVersions(liferayData);
-                
+
             } else {//throw error
                 console.log("There was an error fetching the data");
             }
@@ -21,7 +21,7 @@ var model = {// Load data locally or remotely
     getLiferayVersions: function (liferayData) {
 
         liferayVersions = [];// Initializes empty versions array
-        
+
         // Populates liferayVersions empty array with value equal or major than 6.2
         for (var i = 1; i < liferayData["service-packs"].length; i++) {
             liferayVersions.push(liferayData["service-packs"][i].version);
@@ -46,7 +46,6 @@ var commander = {// Actual logic
 var view = {// Render data on the interface
 
     renderLiferayVersions: function (liferayVersions) {
-
         var $liferayVersionFormSelect = document.getElementById('liferayVersionFormSelect');
 
         for (var i = 0; i < liferayVersions.length; i++) {
@@ -54,7 +53,6 @@ var view = {// Render data on the interface
             $liferayVersionFormSelect.appendChild(optionNode);
             optionNode.textContent = liferayVersions[i];
         }
-        
     }
 
 };
