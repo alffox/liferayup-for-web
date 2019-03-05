@@ -1,4 +1,4 @@
-var model = {};//Load data locally or from a remote server
+var model = {};//Load data locally
 
 var commander = {
     initData: function () {
