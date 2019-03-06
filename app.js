@@ -7,7 +7,9 @@ var model = {// Load data locally or remotely
             if (xhr.status >= 200 && xhr.status < 300) {
                 liferayData = JSON.parse(xhr.responseText);
 
-                model.getLiferayVersions(liferayData);
+                console.log(liferayData);
+
+                commander.getLiferayVersions(liferayData);
 
             } else {//throw error
                 console.log("There was an error fetching the data");
@@ -16,6 +18,14 @@ var model = {// Load data locally or remotely
 
         xhr.open('GET', './info.json');// This file is the local json copy of https://files.liferay.com/public/support/patching-tool-info.xml
         xhr.send();
+    }
+
+};
+
+var commander = {// Actual logic
+
+    initData: function () {
+        model.getLiferayData();
     },
 
     getLiferayVersions: function (liferayData) {
@@ -26,19 +36,7 @@ var model = {// Load data locally or remotely
         for (var i = 1; i < liferayData["service-packs"].length; i++) {
             liferayVersions.push(liferayData["service-packs"][i].version);
         }
-        commander.fetchLiferayVersions(liferayVersions);// Delegate the data handling for rendering to the commander
-    },
-
-};
-
-var commander = {// Actual logic
-
-    initData: function () {
-        model.getLiferayData();
-    },
-
-    fetchLiferayVersions: function (liferayVersions) {
-        view.renderLiferayVersions(liferayVersions);
+        view.renderLiferayVersions(liferayVersions);// Delegate the rendering
     }
 
 };
