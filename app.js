@@ -57,7 +57,7 @@ var commander = {// Actual logic
             liferayVersions.push(liferayData["service-packs"][i].version);
         }
         view.renderLiferayVersions(liferayVersions);// Delegate the rendering
-    }
+    },
 
 };
 
