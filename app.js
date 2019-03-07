@@ -1,7 +1,27 @@
+var liferayData;
+
 var model = {// Load data locally or remotely
 
+    getLiferayVersionsData: function () {
+
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                liferayData = JSON.parse(xhr.responseText);
+
+                commander.getLiferayVersions(liferayData);
+
+            } else {//throw error
+                console.log("There was an error fetching the data");
+            }
+        };
+
+        xhr.open('GET', './info.json');// This file is the local json copy of https://files.liferay.com/public/support/patching-tool-info.xml
+        xhr.send();
+    },
+
     getLiferayData: function () {
-        var liferayData;
+
         var xhr = new XMLHttpRequest();
         xhr.onload = function () {
             if (xhr.status >= 200 && xhr.status < 300) {
@@ -18,14 +38,14 @@ var model = {// Load data locally or remotely
 
         xhr.open('GET', './info.json');// This file is the local json copy of https://files.liferay.com/public/support/patching-tool-info.xml
         xhr.send();
-    }
+    },
 
 };
 
 var commander = {// Actual logic
 
     initData: function () {
-        model.getLiferayData();
+        model.getLiferayVersionsData();
     },
 
     getLiferayVersions: function (liferayData) {
