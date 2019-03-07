@@ -68,6 +68,7 @@ var view = {// Render data on the interface
 
         for (var i = 0; i < liferayVersions.length; i++) {
             var optionNode = document.createElement("option");
+            optionNode.setAttribute("class", "portal-version");
             $liferayVersionFormSelect.appendChild(optionNode);
             optionNode.textContent = liferayVersions[i];
         }
