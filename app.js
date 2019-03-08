@@ -33,8 +33,39 @@ var commander = {// Actual logic
 
     getLiferayVersion: function () {// Listen to change event on Liferay version select fields and get the value upon choosing
         document.querySelector('select[id="liferayVersionFormSelect"]').onchange = function (event) {
-            alert(event.target.value);
+            
+            var selectedLiferayVersion = event.target.value;
+
+            if (selectedLiferayVersion == 6210) {
+                selectedLiferayVersionIndex = 1;
+            }
+            else if (selectedLiferayVersion == 7010) {
+                selectedLiferayVersionIndex = 2;
+    
+            }
+            else if (selectedLiferayVersion == 7110) {
+                selectedLiferayVersionIndex = 3;
+            }
+    
+            commander.filterLiferayVersionServicePacks(selectedLiferayVersionIndex);
         }
+    },
+
+    filterLiferayVersionServicePacks: function (selectedLiferayVersionIndex) {
+        //console.log(selectedLiferayVersionIndex);
+
+        LiferayVersionServicePack = [];
+
+        for (var i = 0; i < liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"].length; i++) {
+
+            LiferayVersionServicePack.push({
+            "name": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i].name),
+            "fixpacks": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i]["fix-packs"])
+            });
+        }
+
+        console.log(LiferayVersionServicePack);
+        //console.log(LiferayVersionServicePackFixes);
     }
 
 };
@@ -50,6 +81,10 @@ var view = {// Render data on the interface
             optionNode.textContent = liferayVersions[i];
         }
         commander.getLiferayVersion();// Correct values stored in DOM, now let's call commander.getLiferayVersion() method to bind change listener event and get the selected data
+    },
+
+    renderLiferayServicePacks: function() {
+
     }
 
 };
