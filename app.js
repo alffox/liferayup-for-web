@@ -4,7 +4,7 @@ var xhr = new XMLHttpRequest();
 xhr.onload = function () {
     if (xhr.status >= 200 && xhr.status < 300) {
         liferayData = JSON.parse(xhr.responseText);
-        
+
         commander.initData(liferayData);
     } else {//throw error
         console.log("There was an error fetching the data");
@@ -32,10 +32,10 @@ var commander = {// Actual logic
         view.renderLiferayVersions(liferayVersions);// Delegate the rendering
     },
 
-    getLiferayVersion: function() {
-        document.querySelector('select[id="liferayVersionFormSelect"]').onchange=function(event){
-            alert(event.target.value); 
-            }
+    getLiferayVersion: function () {
+        document.querySelector('select[id="liferayVersionFormSelect"]').onchange = function (event) {
+            alert(event.target.value);
+        }
     }
 
 };
