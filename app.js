@@ -64,7 +64,13 @@ var commander = {// Actual logic
             });
         }
         view.renderLiferayServicePacks(LiferayVersionServicePacks);
-    }
+    }/*,
+
+    submitData: function () {
+        var e = document.getElementById("liferayVersionFormSelect");
+        var strUser = e.options[e.selectedIndex].text;
+        console.log(strUser);
+    }*/
 
 };
 
