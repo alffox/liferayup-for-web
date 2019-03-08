@@ -18,10 +18,10 @@ var commander = {// Actual logic
 
     initData: function () {
         console.log(liferayData);
-        commander.getLiferayVersions(liferayData);
+        commander.filterLiferayVersions(liferayData);
     },
 
-    getLiferayVersions: function (liferayData) {
+    filterLiferayVersions: function (liferayData) {
 
         liferayVersions = [];// Initializes empty versions array
 
@@ -31,6 +31,12 @@ var commander = {// Actual logic
         }
         view.renderLiferayVersions(liferayVersions);// Delegate the rendering
     },
+
+    getLiferayVersion: function() {
+        document.querySelector('select[id="liferayVersionFormSelect"]').onchange=function(event){
+            alert(event.target.value); 
+            }
+    }
 
 };
 
@@ -45,6 +51,7 @@ var view = {// Render data on the interface
             $liferayVersionFormSelect.appendChild(optionNode);
             optionNode.textContent = liferayVersions[i];
         }
+        commander.getLiferayVersion();
     }
 
 };
