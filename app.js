@@ -54,18 +54,16 @@ var commander = {// Actual logic
     filterLiferayVersionServicePacks: function (selectedLiferayVersionIndex) {
         //console.log(selectedLiferayVersionIndex);
 
-        LiferayVersionServicePack = [];
+        LiferayVersionServicePacks = [];
 
         for (var i = 0; i < liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"].length; i++) {
 
-            LiferayVersionServicePack.push({
+            LiferayVersionServicePacks.push({
             "name": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i].name),
             "fixpacks": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i]["fix-packs"])
             });
         }
-
-        console.log(LiferayVersionServicePack);
-        //console.log(LiferayVersionServicePackFixes);
+        view.renderLiferayServicePack(LiferayVersionServicePacks);
     }
 
 };
