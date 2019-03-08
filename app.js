@@ -63,7 +63,7 @@ var commander = {// Actual logic
             "fixpacks": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i]["fix-packs"])
             });
         }
-        view.renderLiferayServicePack(LiferayVersionServicePacks);
+        view.renderLiferayServicePacks(LiferayVersionServicePacks);
     }
 
 };
@@ -81,7 +81,18 @@ var view = {// Render data on the interface
         commander.getLiferayVersion();// Correct values stored in DOM, now let's call commander.getLiferayVersion() method to bind change listener event and get the selected data
     },
 
-    renderLiferayServicePacks: function() {
+    renderLiferayServicePacks: function(LiferayVersionServicePacks) {
+        var $liferayServicePackFormSelect = document.getElementById('liferayServicePackFormSelect');
+
+        while ($liferayServicePackFormSelect.firstChild) {
+            $liferayServicePackFormSelect.removeChild($liferayServicePackFormSelect.firstChild);
+        }
+
+        for (var i = 0; i < LiferayVersionServicePacks.length; i++) {
+            var optionNode = document.createElement("option");
+            $liferayServicePackFormSelect.appendChild(optionNode);
+            optionNode.textContent = LiferayVersionServicePacks[i].name;
+        }
 
     }
 
