@@ -91,7 +91,7 @@ var view = {// Render data on the interface
         for (var i = 0; i < LiferayVersionServicePacks.length; i++) {
             var optionNode = document.createElement("option");
             $liferayServicePackFormSelect.appendChild(optionNode);
-            optionNode.textContent = LiferayVersionServicePacks[i].name;
+            optionNode.textContent = "Service Pack " + LiferayVersionServicePacks[i].name + ' - ' + 'Name: ' + LiferayVersionServicePacks[i].fixpacks;
         }
 
     }
