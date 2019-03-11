@@ -41,39 +41,39 @@ var commander = {// Actual logic
 
     getLiferayVersion: function () {// Listen to change event on Liferay version select fields and get the value upon choosing
         document.querySelector('select[id="liferayVersionFormSelect"]').onchange = function (event) {
-            
+
             var selectedLiferayVersion = event.target.value;
 
             if (selectedLiferayVersion == 6210) {
                 selectedLiferayVersionIndex = 1;
 
-                appServers = ["Tomcat","JBoss","Glassfish"];
+                appServers = ["Tomcat", "JBoss", "Glassfish"];
             }
             else if (selectedLiferayVersion == 7010) {
                 selectedLiferayVersionIndex = 2;
 
-                appServers = ["Tomcat","JBoss","WildFly"];
+                appServers = ["Tomcat", "JBoss", "WildFly"];
             }
             else if (selectedLiferayVersion == 7110) {
                 selectedLiferayVersionIndex = 3;
-                appServers = ["Tomcat","WildFly"];
+                appServers = ["Tomcat", "WildFly"];
             }
 
-            databaseVendors = ["HSQL","MySQL","Oracle","MS SQL","PostgreSQL","DB2","Sysbase","MariaDB"];
-            documentStoreTypes = ["FS","ADFS","DB","CMIS","S3","JCR"];
-    
-            commander.filterLiferayVersionServicePacks(selectedLiferayVersionIndex,appServers);
-        }
+            databaseVendors = ["HSQL", "MySQL", "Oracle", "MS SQL", "PostgreSQL", "DB2", "Sysbase", "MariaDB"];
+            documentStoreTypes = ["FS", "ADFS", "DB", "CMIS", "S3", "JCR"];
+
+            commander.filterLiferayVersionServicePacks(selectedLiferayVersionIndex, appServers);
+        };
     },
 
-    filterLiferayVersionServicePacks: function (selectedLiferayVersionIndex,appServers) {
+    filterLiferayVersionServicePacks: function (selectedLiferayVersionIndex, appServers) {
         LiferayVersionServicePacks = [];
 
         for (var i = 0; i < liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"].length; i++) {
 
             LiferayVersionServicePacks.push({
-            "name": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i].name),
-            "fixpacks": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i]["fix-packs"])
+                "name": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i].name),
+                "fixpacks": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i]["fix-packs"])
             });
         }
 
@@ -86,7 +86,7 @@ var commander = {// Actual logic
     },
 
     getData: function () {
-        document.getElementById('form-submit').addEventListener("click", function(event){
+        document.getElementById('form-submit').addEventListener("click", function (event) {
             event.preventDefault();
 
             var LiferayVersion = document.getElementById('liferayVersionFormSelect');
@@ -98,10 +98,10 @@ var commander = {// Actual logic
             var selectedliferaySettingsFormSelect = $liferaySettingsFormSelect.options[$liferaySettingsFormSelect.selectedIndex].text;
 
             alert("The selected Liferay version is: " + selectedLiferayVersion + '\n'
-            + "The selected Liferay Service Pack number and name are: " + selectedLiferayServicePackNumberName + '\n'
-            + "The selected Liferay Application Server is: " + selectedLiferayApplicationServer + '\n'
-            + "The selected Liferay Database is: " + selectedLiferayDatabase + '\n'
-            + "The selected Liferay Document Store Type is: " + selectedliferaySettingsFormSelect + '\n')
+                + "The selected Liferay Service Pack number and name are: " + selectedLiferayServicePackNumberName + '\n'
+                + "The selected Liferay Application Server is: " + selectedLiferayApplicationServer + '\n'
+                + "The selected Liferay Database is: " + selectedLiferayDatabase + '\n'
+                + "The selected Liferay Document Store Type is: " + selectedliferaySettingsFormSelect + '\n');
         });
     }
 
@@ -116,7 +116,7 @@ var view = {// Render data on the interface
         $liferaySettingsFormSelect = document.getElementById('liferaySettingsFormSelect');
         submitButton = document.getElementById('form-submit');
 
-        disabledFields = [$liferayServicePackFormSelect,$liferayApplicationServerFormSelect,$liferayDatabaseFormSelect,$liferaySettingsFormSelect,submitButton];
+        disabledFields = [$liferayServicePackFormSelect, $liferayApplicationServerFormSelect, $liferayDatabaseFormSelect, $liferaySettingsFormSelect, submitButton];
 
         for (var i = 0; i < disabledFields.length; i++) {
             disabledFields[i].removeAttribute("disabled");
@@ -135,7 +135,7 @@ var view = {// Render data on the interface
         commander.getLiferayVersion();// Correct values stored in DOM, now let's call commander.getLiferayVersion() method to bind change listener event and get the selected data
     },
 
-    renderLiferayServicePacks: function(LiferayVersionServicePacks) {
+    renderLiferayServicePacks: function (LiferayVersionServicePacks) {
 
         while ($liferayServicePackFormSelect.firstChild) {
             $liferayServicePackFormSelect.removeChild($liferayServicePackFormSelect.firstChild);
@@ -161,7 +161,7 @@ var view = {// Render data on the interface
             optionNode.textContent = appServers[i];
         }
     },
-    
+
     renderLiferayDatabaseVendors: function (databaseVendors) {
 
         while ($liferayDatabaseFormSelect.firstChild) {
@@ -186,6 +186,6 @@ var view = {// Render data on the interface
             $liferaySettingsFormSelect.appendChild(optionNode);
             optionNode.textContent = documentStoreTypes[i];
         }
-        }
+    }
 
 };
