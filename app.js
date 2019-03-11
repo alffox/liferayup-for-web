@@ -72,6 +72,8 @@ var commander = {// Actual logic
         }
         view.renderLiferayServicePacks(LiferayVersionServicePacks);
         view.renderLiferayappServers(appServers);
+        view.renderLiferayDatabaseVendors(databaseVendors);
+        view.renderLiferaydocumentStoreTypes(documentStoreTypes);
     }/*,
 
     submitData: function () {
@@ -121,6 +123,34 @@ var view = {// Render data on the interface
             var optionNode = document.createElement("option");
             $liferayApplicationServerFormSelect.appendChild(optionNode);
             optionNode.textContent = appServers[i];
+        }
+    },
+    
+    renderLiferayDatabaseVendors: function (databaseVendors) {
+        var $liferayDatabaseFormSelect = document.getElementById('liferayDatabaseFormSelect');
+
+        while ($liferayDatabaseFormSelect.firstChild) {
+            $liferayDatabaseFormSelect.removeChild($liferayDatabaseFormSelect.firstChild);
+        }
+
+        for (var i = 0; i < databaseVendors.length; i++) {
+            var optionNode = document.createElement("option");
+            $liferayDatabaseFormSelect.appendChild(optionNode);
+            optionNode.textContent = databaseVendors[i];
+        }
+    },
+
+    renderLiferaydocumentStoreTypes: function (documentStoreTypes) {
+        var $liferaySettingsFormSelect = document.getElementById('liferaySettingsFormSelect');
+
+        while ($liferaySettingsFormSelect.firstChild) {
+            $liferaySettingsFormSelect.removeChild($liferaySettingsFormSelect.firstChild);
+        }
+
+        for (var i = 0; i < documentStoreTypes.length; i++) {
+            var optionNode = document.createElement("option");
+            $liferaySettingsFormSelect.appendChild(optionNode);
+            optionNode.textContent = documentStoreTypes[i];
         }
     } 
 
