@@ -1,4 +1,6 @@
 var liferayData;// Initialize empty variable. These data will be fetched once to prevent duplicate calls and reused in the app
+var databaseVendors;
+var documentStoreTypes;
 
 var xhr = new XMLHttpRequest();// Fetch data asynchronously with this plain XMLHttpRequest to preserve IE11 compatibility 
 xhr.onload = function () {
@@ -38,22 +40,27 @@ var commander = {// Actual logic
 
             if (selectedLiferayVersion == 6210) {
                 selectedLiferayVersionIndex = 1;
+
+                appServers = ["Tomcat","JBoss","Glassfish"];
             }
             else if (selectedLiferayVersion == 7010) {
                 selectedLiferayVersionIndex = 2;
-    
+
+                appServers = ["Tomcat","JBoss","WildFly"];
             }
             else if (selectedLiferayVersion == 7110) {
                 selectedLiferayVersionIndex = 3;
+                appServers = ["Tomcat","WildFly"];
             }
+
+            databaseVendors = ["MySQL","Oracle","MS SQL","PostgreSQL","DB2","HSQL","Sysbase","MariaDB"];
+            documentStoreTypes = ["FS","ADFS","DB","CMIS","S3","JCR"];
     
-            commander.filterLiferayVersionServicePacks(selectedLiferayVersionIndex);
+            commander.filterLiferayVersionServicePacks(selectedLiferayVersionIndex,appServers);
         }
     },
 
-    filterLiferayVersionServicePacks: function (selectedLiferayVersionIndex) {
-        //console.log(selectedLiferayVersionIndex);
-
+    filterLiferayVersionServicePacks: function (selectedLiferayVersionIndex,appServers) {
         LiferayVersionServicePacks = [];
 
         for (var i = 0; i < liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"].length; i++) {
@@ -64,6 +71,7 @@ var commander = {// Actual logic
             });
         }
         view.renderLiferayServicePacks(LiferayVersionServicePacks);
+        view.renderLiferayappServers(appServers);
     }/*,
 
     submitData: function () {
@@ -100,6 +108,20 @@ var view = {// Render data on the interface
             optionNode.textContent = "Service Pack " + LiferayVersionServicePacks[i].name + ' - ' + 'Name: ' + LiferayVersionServicePacks[i].fixpacks;
         }
 
-    }
+    },
+
+    renderLiferayappServers: function (appServers) {
+        var $liferayApplicationServerFormSelect = document.getElementById('liferayApplicationServerFormSelect');
+
+        while ($liferayApplicationServerFormSelect.firstChild) {
+            $liferayApplicationServerFormSelect.removeChild($liferayApplicationServerFormSelect.firstChild);
+        }
+
+        for (var i = 0; i < appServers.length; i++) {
+            var optionNode = document.createElement("option");
+            $liferayApplicationServerFormSelect.appendChild(optionNode);
+            optionNode.textContent = appServers[i];
+        }
+    } 
 
 };
