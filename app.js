@@ -2,6 +2,11 @@ var liferayData;// Initialize empty variable. These data will be fetched once to
 var databaseVendors;
 var documentStoreTypes;
 
+var $liferayServicePackFormSelect;
+var $liferayApplicationServerFormSelect;
+var $liferayDatabaseFormSelect;
+var $liferaySettingsFormSelect;
+
 var xhr = new XMLHttpRequest();// Fetch data asynchronously with this plain XMLHttpRequest to preserve IE11 compatibility 
 xhr.onload = function () {
     if (xhr.status >= 200 && xhr.status < 300) {
@@ -53,7 +58,7 @@ var commander = {// Actual logic
                 appServers = ["Tomcat","WildFly"];
             }
 
-            databaseVendors = ["MySQL","Oracle","MS SQL","PostgreSQL","DB2","HSQL","Sysbase","MariaDB"];
+            databaseVendors = ["HSQL","MySQL","Oracle","MS SQL","PostgreSQL","DB2","Sysbase","MariaDB"];
             documentStoreTypes = ["FS","ADFS","DB","CMIS","S3","JCR"];
     
             commander.filterLiferayVersionServicePacks(selectedLiferayVersionIndex,appServers);
@@ -70,6 +75,10 @@ var commander = {// Actual logic
             "fixpacks": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i]["fix-packs"])
             });
         }
+
+        liferayServicePackFormSelect,liferayApplicationServerFormSelect,liferayDatabaseFormSelect,liferaySettingsFormSelect
+
+        view.init();
         view.renderLiferayServicePacks(LiferayVersionServicePacks);
         view.renderLiferayappServers(appServers);
         view.renderLiferayDatabaseVendors(databaseVendors);
@@ -86,6 +95,20 @@ var commander = {// Actual logic
 
 var view = {// Render data on the interface
 
+    init: function () {
+        $liferayServicePackFormSelect = document.getElementById('liferayServicePackFormSelect');
+        $liferayApplicationServerFormSelect = document.getElementById('liferayApplicationServerFormSelect');
+        $liferayDatabaseFormSelect = document.getElementById('liferayDatabaseFormSelect');
+        $liferaySettingsFormSelect = document.getElementById('liferaySettingsFormSelect');
+
+        disabledFields = [$liferayServicePackFormSelect,$liferayApplicationServerFormSelect,$liferayDatabaseFormSelect,$liferaySettingsFormSelect];
+
+        for (var i = 0; i < disabledFields.length; i++) {
+            disabledFields[i].removeAttribute("readonly");
+        }
+
+    },
+
     renderLiferayVersions: function (liferayVersions) {
         var $liferayVersionFormSelect = document.getElementById('liferayVersionFormSelect');
 
@@ -98,7 +121,6 @@ var view = {// Render data on the interface
     },
 
     renderLiferayServicePacks: function(LiferayVersionServicePacks) {
-        var $liferayServicePackFormSelect = document.getElementById('liferayServicePackFormSelect');
 
         while ($liferayServicePackFormSelect.firstChild) {
             $liferayServicePackFormSelect.removeChild($liferayServicePackFormSelect.firstChild);
@@ -113,7 +135,6 @@ var view = {// Render data on the interface
     },
 
     renderLiferayappServers: function (appServers) {
-        var $liferayApplicationServerFormSelect = document.getElementById('liferayApplicationServerFormSelect');
 
         while ($liferayApplicationServerFormSelect.firstChild) {
             $liferayApplicationServerFormSelect.removeChild($liferayApplicationServerFormSelect.firstChild);
@@ -127,7 +148,6 @@ var view = {// Render data on the interface
     },
     
     renderLiferayDatabaseVendors: function (databaseVendors) {
-        var $liferayDatabaseFormSelect = document.getElementById('liferayDatabaseFormSelect');
 
         while ($liferayDatabaseFormSelect.firstChild) {
             $liferayDatabaseFormSelect.removeChild($liferayDatabaseFormSelect.firstChild);
@@ -141,7 +161,6 @@ var view = {// Render data on the interface
     },
 
     renderLiferaydocumentStoreTypes: function (documentStoreTypes) {
-        var $liferaySettingsFormSelect = document.getElementById('liferaySettingsFormSelect');
 
         while ($liferaySettingsFormSelect.firstChild) {
             $liferaySettingsFormSelect.removeChild($liferaySettingsFormSelect.firstChild);
