@@ -111,7 +111,6 @@
                 <div class="col-md-6">
                     <div class="card w-100 mt-1 options">
                         <div class="card-header py-1"><i class="fas fa-cogs"></i> Settings</div>
-
                         <div class="form-group">
                             <label for="liferaySettingsFormSelect">Document Store Type</label>
                             <select class="form-control" id="liferaySettingsFormSelect">
@@ -134,66 +133,84 @@
                 </div>
             </div>
 
-            <ul class="nav nav-tabs" id="prefTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
-                        aria-controls="general" aria-selected="true">General</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="clustering-tab" data-toggle="tab" href="#clustering" role="tab"
-                        aria-controls="clustering" aria-selected="false">Clustering</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="auth-tab" data-toggle="tab" href="#auth" role="tab" aria-controls="auth"
-                        aria-selected="false">Auth.</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tools-tab" data-toggle="tab" href="#tools" role="tab" aria-controls="tools"
-                        aria-selected="false">Tools</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="exp-imp-tab" data-toggle="tab" href="#exp-imp" role="tab"
-                        aria-controls="exp-imp" aria-selected="false">Exp./Imp.</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="clean-tab" data-toggle="tab" href="#clean" role="tab" aria-controls="clean"
-                        aria-selected="false">Clean</a>
-                </li>
-            </ul>
+            <div class="row pb-4">
+                <div class="col-md-12">
+                    <div class="card w-100 mt-1 settings">
+                        <div class="card-header py-1"><i class="fas fa-tasks"></i> Settings</div>
 
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">This
-                    is
-                    the General tab ...
+                        <ul class="nav nav-tabs" id="prefTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
+                                    aria-controls="general" aria-selected="true">General</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="clustering-tab" data-toggle="tab" href="#clustering" role="tab"
+                                    aria-controls="clustering" aria-selected="false">Clustering</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="auth-tab" data-toggle="tab" href="#auth" role="tab"
+                                    aria-controls="auth" aria-selected="false">Auth.</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="tools-tab" data-toggle="tab" href="#tools" role="tab"
+                                    aria-controls="tools" aria-selected="false">Tools</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="exp-imp-tab" data-toggle="tab" href="#exp-imp" role="tab"
+                                    aria-controls="exp-imp" aria-selected="false">Exp./Imp.</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="clean-tab" data-toggle="tab" href="#clean" role="tab"
+                                    aria-controls="clean" aria-selected="false">Clean</a>
+                            </li>
+                        </ul>
 
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">Default checkbox unchecked</label>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="general" role="tabpanel"
+                                aria-labelledby="general-tab">This
+                                is
+                                the General tab ...
+
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                                    <label class="custom-control-label" for="defaultUnchecked">Default checkbox
+                                        unchecked</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="optradio">Default radio
+                                        button
+                                        unchecked</label>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="clustering" role="tabpanel" aria-labelledby="clustering-tab">
+                                This is the
+                                Clustering tab ...</div>
+                            <div class="tab-pane fade" id="auth" role="tabpanel" aria-labelledby="auth-tab">This is the
+                                Auth. tab
+                                ...
+                            </div>
+                            <div class="tab-pane fade" id="tools" role="tabpanel" aria-labelledby="tools-tab">This is
+                                the Tools tab
+                                ...
+                            </div>
+                            <div class="tab-pane fade" id="exp-imp" role="tabpanel" aria-labelledby="exp-imp-tab">This
+                                is the
+                                Exp./Imp.
+                                tab ...</div>
+                            <div class="tab-pane fade" id="clean" role="tabpanel" aria-labelledby="clean-tab">This is
+                                the Clean tab
+                                ...
+                            </div>
+                        </div>
+
                     </div>
-
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="optradio">Default radio button
-                            unchecked</label>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="clustering" role="tabpanel" aria-labelledby="clustering-tab">This is the
-                    Clustering tab ...</div>
-                <div class="tab-pane fade" id="auth" role="tabpanel" aria-labelledby="auth-tab">This is the Auth. tab
-                    ...
-                </div>
-                <div class="tab-pane fade" id="tools" role="tabpanel" aria-labelledby="tools-tab">This is the Tools tab
-                    ...
-                </div>
-                <div class="tab-pane fade" id="exp-imp" role="tabpanel" aria-labelledby="exp-imp-tab">This is the
-                    Exp./Imp.
-                    tab ...</div>
-                <div class="tab-pane fade" id="clean" role="tabpanel" aria-labelledby="clean-tab">This is the Clean tab
-                    ...
                 </div>
             </div>
-        </form>
+    </div>
+    </form>
 
     </div>
 
