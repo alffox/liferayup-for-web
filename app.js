@@ -135,11 +135,14 @@ var view = {// Render data on the interface
         commander.getLiferayVersion();// Correct values stored in DOM, now let's call commander.getLiferayVersion() method to bind change listener event and get the selected data
     },
 
-    renderLiferayServicePacks: function (LiferayVersionServicePacks) {
-
-        while ($liferayServicePackFormSelect.firstChild) {
-            $liferayServicePackFormSelect.removeChild($liferayServicePackFormSelect.firstChild);
+    cleanPreviousSelection: function(DOMElement) {
+        while (DOMElement.firstChild) {
+            DOMElement.removeChild(DOMElement.firstChild);
         }
+    },
+
+    renderLiferayServicePacks: function (LiferayVersionServicePacks) {
+        view.cleanPreviousSelection($liferayServicePackFormSelect);
 
         for (var i = 0; i < LiferayVersionServicePacks.length; i++) {
             var optionNode = document.createElement("option");
@@ -150,10 +153,7 @@ var view = {// Render data on the interface
     },
 
     renderLiferayappServers: function (appServers) {
-
-        while ($liferayApplicationServerFormSelect.firstChild) {
-            $liferayApplicationServerFormSelect.removeChild($liferayApplicationServerFormSelect.firstChild);
-        }
+        view.cleanPreviousSelection($liferayApplicationServerFormSelect);
 
         for (var i = 0; i < appServers.length; i++) {
             var optionNode = document.createElement("option");
@@ -164,9 +164,7 @@ var view = {// Render data on the interface
 
     renderLiferayDatabaseVendors: function (databaseVendors) {
 
-        while ($liferayDatabaseFormSelect.firstChild) {
-            $liferayDatabaseFormSelect.removeChild($liferayDatabaseFormSelect.firstChild);
-        }
+        view.cleanPreviousSelection($liferayDatabaseFormSelect);
 
         for (var i = 0; i < databaseVendors.length; i++) {
             var optionNode = document.createElement("option");
@@ -177,10 +175,8 @@ var view = {// Render data on the interface
 
     renderLiferaydocumentStoreTypes: function (documentStoreTypes) {
 
-        while ($liferaySettingsFormSelect.firstChild) {
-            $liferaySettingsFormSelect.removeChild($liferaySettingsFormSelect.firstChild);
-        }
-
+        view.cleanPreviousSelection($liferaySettingsFormSelect);
+        
         for (var i = 0; i < documentStoreTypes.length; i++) {
             var optionNode = document.createElement("option");
             $liferaySettingsFormSelect.appendChild(optionNode);
