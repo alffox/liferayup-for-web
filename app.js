@@ -6,6 +6,7 @@ var $liferayServicePackFormSelect;
 var $liferayApplicationServerFormSelect;
 var $liferayDatabaseFormSelect;
 var $liferaySettingsFormSelect;
+var submitButton;
 
 var xhr = new XMLHttpRequest();// Fetch data asynchronously with this plain XMLHttpRequest to preserve IE11 compatibility 
 xhr.onload = function () {
@@ -81,13 +82,28 @@ var commander = {// Actual logic
         view.renderLiferayappServers(appServers);
         view.renderLiferayDatabaseVendors(databaseVendors);
         view.renderLiferaydocumentStoreTypes(documentStoreTypes);
-    }/*,
+        commander.getData();
+    },
 
-    submitData: function () {
-        var e = document.getElementById("liferayVersionFormSelect");
-        var strUser = e.options[e.selectedIndex].text;
-        console.log(strUser);
-    }*/
+    getData: function () {
+        document.getElementById('form-submit').addEventListener("click", function(event){
+            event.preventDefault();
+
+            var LiferayVersion = document.getElementById('liferayVersionFormSelect');
+            var selectedLiferayVersion = LiferayVersion.options[LiferayVersion.selectedIndex].text;
+
+            var selectedLiferayServicePackNumberName = $liferayServicePackFormSelect.options[$liferayServicePackFormSelect.selectedIndex].text;
+            var selectedLiferayApplicationServer = $liferayApplicationServerFormSelect.options[$liferayApplicationServerFormSelect.selectedIndex].text;
+            var selectedLiferayDatabase = $liferayDatabaseFormSelect.options[$liferayDatabaseFormSelect.selectedIndex].text;
+            var selectedliferaySettingsFormSelect = $liferaySettingsFormSelect.options[$liferaySettingsFormSelect.selectedIndex].text;
+
+            alert("The selected Liferay version is: " + selectedLiferayVersion + '\n'
+            + "The selected Liferay Service Pack number and name are: " + selectedLiferayServicePackNumberName + '\n'
+            + "The selected Liferay Application Server is: " + selectedLiferayApplicationServer + '\n'
+            + "The selected Liferay Database is: " + selectedLiferayDatabase + '\n'
+            + "The selected Liferay Document Store Type is: " + selectedliferaySettingsFormSelect + '\n')
+        });
+    }
 
 };
 
@@ -98,11 +114,12 @@ var view = {// Render data on the interface
         $liferayApplicationServerFormSelect = document.getElementById('liferayApplicationServerFormSelect');
         $liferayDatabaseFormSelect = document.getElementById('liferayDatabaseFormSelect');
         $liferaySettingsFormSelect = document.getElementById('liferaySettingsFormSelect');
+        submitButton = document.getElementById('form-submit');
 
-        disabledFields = [$liferayServicePackFormSelect,$liferayApplicationServerFormSelect,$liferayDatabaseFormSelect,$liferaySettingsFormSelect];
+        disabledFields = [$liferayServicePackFormSelect,$liferayApplicationServerFormSelect,$liferayDatabaseFormSelect,$liferaySettingsFormSelect,submitButton];
 
         for (var i = 0; i < disabledFields.length; i++) {
-            disabledFields[i].removeAttribute("readonly");
+            disabledFields[i].removeAttribute("disabled");
         }
 
     },
@@ -169,6 +186,6 @@ var view = {// Render data on the interface
             $liferaySettingsFormSelect.appendChild(optionNode);
             optionNode.textContent = documentStoreTypes[i];
         }
-    } 
+        }
 
 };
