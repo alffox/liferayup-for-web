@@ -76,8 +76,6 @@ var commander = {// Actual logic
             });
         }
 
-        liferayServicePackFormSelect,liferayApplicationServerFormSelect,liferayDatabaseFormSelect,liferaySettingsFormSelect
-
         view.init();
         view.renderLiferayServicePacks(LiferayVersionServicePacks);
         view.renderLiferayappServers(appServers);
