@@ -70,11 +70,8 @@ var commander = {// Actual logic
         LiferayVersionServicePacks = [];
 
         for (var i = 0; i < liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"].length; i++) {
-
-            LiferayVersionServicePacks.push({
-                "name": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i].name),
-                "fixpacks": (liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i]["fix-packs"])
-            });
+            LiferayVersionServicePacks.push(liferayData["service-packs"][selectedLiferayVersionIndex]["service-pack"][i].name);
+            
         }
 
         view.init();
@@ -147,7 +144,7 @@ var view = {// Render data on the interface
         for (var i = 0; i < LiferayVersionServicePacks.length; i++) {
             var optionNode = document.createElement("option");
             $liferayServicePackFormSelect.appendChild(optionNode);
-            optionNode.textContent = "Service Pack " + LiferayVersionServicePacks[i].name + ' - ' + 'Name: ' + LiferayVersionServicePacks[i].fixpacks;
+            optionNode.textContent = "SP" + LiferayVersionServicePacks[i];
         }
 
     },
