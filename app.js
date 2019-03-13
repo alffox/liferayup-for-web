@@ -47,20 +47,20 @@ var commander = {// Actual logic
             if (selectedLiferayVersion == 6210) {
                 selectedLiferayVersionIndex = 1;
 
-                appServers = ["Tomcat", "JBoss", "Glassfish"];
+                appServers = ["tomcat", "jboss", "glassfish"];
             }
             else if (selectedLiferayVersion == 7010) {
                 selectedLiferayVersionIndex = 2;
 
-                appServers = ["Tomcat", "JBoss", "WildFly"];
+                appServers = ["tomcat", "jboss", "wildFly"];
             }
             else if (selectedLiferayVersion == 7110) {
                 selectedLiferayVersionIndex = 3;
-                appServers = ["Tomcat", "WildFly"];
+                appServers = ["tomcat", "wildFly"];
             }
 
-            databaseVendors = ["HSQL", "MySQL", "Oracle", "MS SQL", "PostgreSQL", "DB2", "Sysbase", "MariaDB"];
-            documentStoreTypes = ["FS", "ADFS", "DB", "CMIS", "S3", "JCR"];
+            databaseVendors = ["hsql", "mysql", "oracle", "ms sql", "postgresql", "db2", "sysbase", "mariadb"];
+            documentStoreTypes = ["fs", "adfs", "db", "cmis", "s3", "jcr"];
 
             commander.filterLiferayVersionServicePacks(selectedLiferayVersionIndex, appServers);
         };
