@@ -52,11 +52,11 @@ var commander = {// Actual logic
             else if (selectedLiferayVersion == 7010) {
                 selectedLiferayVersionIndex = 2;
 
-                appServers = ["tomcat", "jboss", "wildFly"];
+                appServers = ["tomcat", "jboss", "wildfly"];
             }
             else if (selectedLiferayVersion == 7110) {
                 selectedLiferayVersionIndex = 3;
-                appServers = ["tomcat", "wildFly"];
+                appServers = ["tomcat", "wildfly"];
             }
 
             databaseVendors = ["hsql", "mysql", "oracle", "ms sql", "postgresql", "db2", "sysbase", "mariadb"];
