@@ -87,15 +87,15 @@ var commander = {// Actual logic
             event.preventDefault();
 
             var LiferayVersion = document.getElementById('liferayVersionFormSelect');
-            var selectedLiferayVersion = LiferayVersion.options[LiferayVersion.selectedIndex].text;
+            var selectedLiferayVersion = LiferayVersion.options[LiferayVersion.selectedIndex].value;
 
-            var selectedLiferayServicePackNumberName = $liferayServicePackFormSelect.options[$liferayServicePackFormSelect.selectedIndex].text;
-            var selectedLiferayApplicationServer = $liferayApplicationServerFormSelect.options[$liferayApplicationServerFormSelect.selectedIndex].text;
-            var selectedLiferayDatabase = $liferayDatabaseFormSelect.options[$liferayDatabaseFormSelect.selectedIndex].text;
-            var selectedliferaySettingsFormSelect = $liferaySettingsFormSelect.options[$liferaySettingsFormSelect.selectedIndex].text;
+            var selectedLiferayServicePack = $liferayServicePackFormSelect.options[$liferayServicePackFormSelect.selectedIndex].value;
+            var selectedLiferayApplicationServer = $liferayApplicationServerFormSelect.options[$liferayApplicationServerFormSelect.selectedIndex].value;
+            var selectedLiferayDatabase = $liferayDatabaseFormSelect.options[$liferayDatabaseFormSelect.selectedIndex].value;
+            var selectedliferaySettingsFormSelect = $liferaySettingsFormSelect.options[$liferaySettingsFormSelect.selectedIndex].value;
 
             alert("The selected Liferay version is: " + selectedLiferayVersion + '\n'
-                + "The selected Liferay Service Pack number and name are: " + selectedLiferayServicePackNumberName + '\n'
+                + "The selected Liferay Service Pack: " + selectedLiferayServicePack + '\n'
                 + "The selected Liferay Application Server is: " + selectedLiferayApplicationServer + '\n'
                 + "The selected Liferay Database is: " + selectedLiferayDatabase + '\n'
                 + "The selected Liferay Document Store Type is: " + selectedliferaySettingsFormSelect + '\n');
@@ -127,6 +127,7 @@ var view = {// Render data on the interface
         for (var i = 0; i < liferayVersions.length; i++) {
             var optionNode = document.createElement("option");
             $liferayVersionFormSelect.appendChild(optionNode);
+            optionNode.value = liferayVersions[i];
             optionNode.textContent = liferayVersions[i];
         }
         commander.getLiferayVersion();// Correct values stored in DOM, now let's call commander.getLiferayVersion() method to bind change listener event and get the selected data
@@ -144,6 +145,7 @@ var view = {// Render data on the interface
         for (var i = 0; i < LiferayVersionServicePacks.length; i++) {
             var optionNode = document.createElement("option");
             $liferayServicePackFormSelect.appendChild(optionNode);
+            optionNode.value = "SP" + LiferayVersionServicePacks[i];
             optionNode.textContent = "SP" + LiferayVersionServicePacks[i];
         }
 
@@ -155,6 +157,7 @@ var view = {// Render data on the interface
         for (var i = 0; i < appServers.length; i++) {
             var optionNode = document.createElement("option");
             $liferayApplicationServerFormSelect.appendChild(optionNode);
+            optionNode.value = appServers[i];
             optionNode.textContent = appServers[i];
         }
     },
@@ -166,6 +169,7 @@ var view = {// Render data on the interface
         for (var i = 0; i < databaseVendors.length; i++) {
             var optionNode = document.createElement("option");
             $liferayDatabaseFormSelect.appendChild(optionNode);
+            optionNode.value = databaseVendors[i];
             optionNode.textContent = databaseVendors[i];
         }
     },
@@ -177,6 +181,7 @@ var view = {// Render data on the interface
         for (var i = 0; i < documentStoreTypes.length; i++) {
             var optionNode = document.createElement("option");
             $liferaySettingsFormSelect.appendChild(optionNode);
+            optionNode.value = documentStoreTypes[i];
             optionNode.textContent = documentStoreTypes[i];
         }
     }
