@@ -86,6 +86,8 @@ var commander = {// Actual logic
         document.getElementById('form-submit').addEventListener("click", function (event) {
             event.preventDefault();
 
+            var isUsePrebuiltBundle = document.getElementById("use-prebuilt-bundle").checked;
+
             var LiferayVersion = document.getElementById('liferayVersionFormSelect');
             var selectedLiferayVersion = LiferayVersion.options[LiferayVersion.selectedIndex].value;
 
@@ -94,7 +96,8 @@ var commander = {// Actual logic
             var selectedLiferayDatabase = $liferayDatabaseFormSelect.options[$liferayDatabaseFormSelect.selectedIndex].value;
             var selectedliferaySettingsFormSelect = $liferaySettingsFormSelect.options[$liferaySettingsFormSelect.selectedIndex].value;
 
-            alert("The selected Liferay version is: " + selectedLiferayVersion + '\n'
+            alert("The checkbox value for Use prebuilt bundle is: " + isUsePrebuiltBundle + '\n'
+                + "The selected Liferay version is: " + selectedLiferayVersion + '\n'
                 + "The selected Liferay Service Pack: " + selectedLiferayServicePack + '\n'
                 + "The selected Liferay Application Server is: " + selectedLiferayApplicationServer + '\n'
                 + "The selected Liferay Database is: " + selectedLiferayDatabase + '\n'
